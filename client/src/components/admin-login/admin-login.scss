@@ -1,0 +1,49 @@
+:host {
+  /* Component styles go here */
+}
+div.login-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  div.left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-card {
+      width: 80%;
+      ion-list {
+        ion-item {
+          --highlight-height: 0;
+          //   --border-style: solid;
+          //   --border-width: 2px;
+          //   --border-radius: 10px;
+          //   --padding-start: 10px;
+          ion-input {
+          }
+        }
+      }
+    }
+  }
+  div.right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: var(--ion-color-primary);
+    h3 {
+      margin-left: 30px;
+      font-size: 3rem;
+      color: var(--color-text-paragraph, white);
+    }
+    ul {
+      margin-left: 30px;
+      color: var(--color-text-paragraph, white);
+      list-style-type: disc;
+      font-size: 1rem;
+    }
+  }
+}

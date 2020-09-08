@@ -1,0 +1,16 @@
+:host {
+  /* Component styles go here */
+}
+div.shops-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  ion-card {
+    width: 280px;
+    ion-list {
+      ion-item:hover {
+        --background: var(--ion-color-medium, rgba(255, 0, 0, 0.5));
+        cursor: pointer;
+      }
+    }
+  }
+}

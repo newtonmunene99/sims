@@ -1,0 +1,42 @@
+:host {
+  /* Component styles go here */
+}
+ion-content {
+  ion-button {
+    margin: 5px auto;
+  }
+}
+div#products-table {
+  ion-grid {
+    background-color: white;
+    border-radius: 5px;
+    padding: 0;
+    margin: 10px;
+    box-shadow: 0 0 20px 2px #e4e4e4;
+    ion-row {
+      ion-col {
+        border: solid 0.1px rgb(230, 228, 228);
+      }
+    }
+    ion-row.table-header {
+      height: 40px;
+      background-color: rgba(var(--ion-color-medium-rgb), 0.6);
+      border-radius: 5px 5px 0 0;
+      ion-col:first-child {
+        border-radius: 5px 0 0 0;
+      }
+      ion-col:last-child {
+        border-radius: 5px 0 0 0;
+      }
+    }
+    ion-row:last-child {
+      border-radius: 0 0 5px 5px;
+      ion-col:first-child {
+        border-radius: 0 0 5px 5px;
+      }
+      ion-col:last-child {
+        border-radius: 0 0 5px 5px;
+      }
+    }
+  }
+}

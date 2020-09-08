@@ -1,0 +1,26 @@
+:host {
+  /* Component styles go here */
+}
+div.form-wrapper {
+  padding: 20px 50px;
+  ion-list {
+    ion-item {
+      --highlight-height: 0px;
+      --border-style: solid;
+      --border-color: rgba(0, 0, 0, 0.3);
+      --border-width: 2px;
+      --border-radius: 10px;
+      --inner-padding-start: 5px;
+      margin-bottom: 4px;
+    }
+    ion-item.item-has-focus {
+      --border-color: var(--ion-color-primary, red);
+
+      --color: var(--ion-color-primary, red);
+
+      ion-input {
+        --color: var(--ion-color-dark, black);
+      }
+    }
+  }
+}

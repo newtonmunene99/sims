@@ -1,0 +1,11 @@
+:host {
+  /* Component styles go here */
+}
+div.cards-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+
+  ion-card.large {
+    min-width: calc(50% - 50px);
+  }
+}

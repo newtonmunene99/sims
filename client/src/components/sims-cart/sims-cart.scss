@@ -1,0 +1,47 @@
+:host {
+  /* Component styles go here */
+}
+div.cart {
+  background-color: white;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  box-shadow: 0px 0px 20px 2px #b7b7b7;
+  border-radius: 5px;
+  transition: all 200ms ease-in;
+  z-index: 1000;
+  ion-content {
+    height: 338px;
+  }
+}
+div.cart.open {
+  height: 450px;
+  width: 350px;
+  div.cart-items-wrapper {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+div.cart.closed {
+  height: 70px;
+  width: 70px;
+  div.cart-closed {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-icon {
+      width: 2em;
+      height: 2em;
+    }
+  }
+  div.cart-closed.has-data {
+    background: var(--ion-color-success);
+  }
+  div.cart-closed.no-data {
+    background: white;
+  }
+}

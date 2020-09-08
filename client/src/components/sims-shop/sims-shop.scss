@@ -1,0 +1,38 @@
+:host {
+  /* Component styles go here */
+}
+div.stock-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  ion-card {
+    width: 200px;
+    min-height: 100px;
+    ion-list {
+      ion-item:hover {
+        --background: var(--ion-color-medium, rgba(255, 0, 0, 0.5));
+      }
+    }
+  }
+  ion-card.add-stock-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      45deg,
+      rgba(var(--ion-color-primary-rgb), 0.6),
+      rgba(var(--ion-color-primary-rgb), 0.8),
+      rgba(var(--ion-color-primary-rgb), 1),
+      rgba(var(--ion-color-primary-rgb), 1),
+      rgba(var(--ion-color-primary-rgb), 0.8),
+      rgba(var(--ion-color-primary-rgb), 0.6)
+    );
+    ion-item {
+      --padding-start: 0;
+      --background: transparent;
+      --color: white;
+      ion-card-subtitle {
+        --color: white;
+      }
+    }
+  }
+}

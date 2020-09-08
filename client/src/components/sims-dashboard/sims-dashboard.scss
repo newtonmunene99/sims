@@ -1,0 +1,27 @@
+:host {
+  /* Component styles go here */
+}
+ion-split-pane {
+  margin-top: 56px;
+  ion-menu {
+    ion-list {
+      margin: auto !important;
+      width: 80%;
+      background-color: black;
+      ion-item {
+        border-radius: 50px;
+        --detail-icon-opacity: 1;
+        --detail-icon-color: white;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin: 5px auto;
+      }
+      ion-item.logout {
+      }
+      ion-item.logout:hover {
+        --background: var(--ion-color-light);
+        --color: var(--ion-color-danger);
+      }
+    }
+  }
+}
