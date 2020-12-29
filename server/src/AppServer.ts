@@ -1,10 +1,10 @@
-import * as bodyParser from "body-parser";
-import * as controllers from "./controllers";
-import { Server } from "@overnightjs/core";
-import { Logger } from "@overnightjs/logger";
-import * as cors from "cors";
+import * as bodyParser from 'body-parser';
+import * as controllers from './controllers';
+import { Server } from '@overnightjs/core';
+import { Logger } from '@overnightjs/logger';
+import cors from 'cors';
 export class AppServer extends Server {
-  private readonly SERVER_STARTED = "Server started on port: ";
+  private readonly SERVER_STARTED = 'Server started on port: ';
 
   constructor() {
     super(true);
@@ -27,7 +27,7 @@ export class AppServer extends Server {
   }
 
   public start(port: number): void {
-    this.app.get("*", (req, res) => {
+    this.app.get('*', (req, res) => {
       res.send(this.SERVER_STARTED + port);
     });
     this.app.listen(port, () => {

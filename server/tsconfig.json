@@ -1,18 +1,28 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "strict": true,
-    "baseUrl": "./",
-    "outDir": "build",
+    "declaration": true,
     "removeComments": true,
-    "experimentalDecorators": true,
-    "target": "es6",
     "emitDecoratorMetadata": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "types": ["node"],
-    "typeRoots": ["node_modules/@types"]
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./build",
+    "baseUrl": "./",
+    "incremental": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "checkJs": false
   },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["./src/public/"]
+  "include": [
+    ".eslintrc.js",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "public",
+    "repository"
+  ]
 }

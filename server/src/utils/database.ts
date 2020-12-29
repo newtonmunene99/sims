@@ -1,12 +1,15 @@
-import { Connection, createPool, Pool, PoolConfig } from "mysql";
+import { createPool, Pool } from 'mysql';
+import Importer from 'mysql-import';
 
 class Database {
   private pool: Pool;
+  private importer: Importer;
+
   constructor(
     host: string,
     user: string,
-    password: string = "",
-    database: string
+    password: string = '',
+    database: string,
   ) {
     this.pool = createPool({
       host,
@@ -14,6 +17,17 @@ class Database {
       password,
       database,
     });
+
+    this.importer = new Importer({
+      host,
+      user,
+      password,
+      database,
+    });
+  }
+
+  seedDatabase() {
+    return this.importer.import('sims.sql');
   }
 
   query(args: { sql: string; [key: string]: any }) {
@@ -36,9 +50,10 @@ class Database {
     });
   }
 }
+
 export const database = new Database(
-  process.env.DB_HOST! ?? "localhost",
-  process.env.DB_USER! ?? "root",
-  process.env.DB_PASSWORD! ?? "",
-  process.env.DB_NAME! ?? "sims"
+  process.env.DB_HOST! ?? 'localhost',
+  process.env.DB_USER! ?? 'root',
+  process.env.DB_PASSWORD! ?? '',
+  process.env.DB_NAME! ?? 'sims',
 );
