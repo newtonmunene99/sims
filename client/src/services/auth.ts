@@ -1,4 +1,3 @@
-const baseUrl = "http://localhost:3000";
 export class AuthProvider {
   constructor() {}
 
@@ -7,15 +6,15 @@ export class AuthProvider {
       fetch(`${baseUrl}/api/auth/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email,
-          password
-        })
+          password,
+        }),
       })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           try {
             localStorage.setItem("sims-token", data.token);
             localStorage.setItem("sims-user", JSON.stringify(data.user));
@@ -24,7 +23,7 @@ export class AuthProvider {
             reject(error);
           }
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
@@ -36,20 +35,20 @@ export class AuthProvider {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("sims-token")}`
+          Authorization: `Bearer ${localStorage.getItem("sims-token")}`,
         },
         body: JSON.stringify({
           email,
           firstName,
           lastName,
-          role
-        })
+          role,
+        }),
       })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           resolve(data);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
@@ -61,15 +60,15 @@ export class AuthProvider {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("sims-token")}`
+          Authorization: `Bearer ${localStorage.getItem("sims-token")}`,
         },
         body: JSON.stringify({
           oldPassword,
-          newPassword
-        })
+          newPassword,
+        }),
       })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           try {
             localStorage.setItem("sims-token", data.token);
             localStorage.setItem("sims-user", JSON.stringify(data.user));
@@ -78,7 +77,7 @@ export class AuthProvider {
             reject(error);
           }
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });

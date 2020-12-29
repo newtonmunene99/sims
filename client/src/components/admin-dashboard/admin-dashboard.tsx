@@ -3,7 +3,7 @@ import RouterTunnel from "../router/Router";
 
 @Component({
   tag: "admin-dashboard",
-  styleUrl: "admin-dashboard.scss"
+  styleUrl: "admin-dashboard.scss",
 })
 export class AdminDashboard {
   @State() user;
@@ -11,20 +11,20 @@ export class AdminDashboard {
   navLinks = [
     {
       name: "Dashboard",
-      link: "/admin"
+      link: "/admin",
     },
     {
       name: "Products",
-      link: "/admin/products"
+      link: "/admin/products",
     },
     {
       name: "Shops",
-      link: "/admin/shops"
+      link: "/admin/shops",
     },
     {
       name: "Employees",
-      link: "/admin/employees"
-    }
+      link: "/admin/employees",
+    },
   ];
   private navCtrl: HTMLIonRouterElement;
 
@@ -33,7 +33,7 @@ export class AdminDashboard {
     this.navCtrl = document.querySelector("ion-router");
 
     this.navCtrl.addEventListener("ionRouteDidChange", (ev: any) => {
-      const index = this.navLinks.findIndex(link =>
+      const index = this.navLinks.findIndex((link) =>
         link.link.includes(ev.detail.to)
       );
       if (index >= 0) {
@@ -47,7 +47,7 @@ export class AdminDashboard {
       component: "user-popover",
       event: ev,
       translucent: true,
-      componentProps: { user: this.user }
+      componentProps: { user: this.user },
     });
 
     document.body.appendChild(popover);
@@ -92,7 +92,7 @@ export class AdminDashboard {
                 <ion-title>SIMS | Admin</ion-title>
                 {this.user ? (
                   <ion-buttons slot="end">
-                    <ion-button onClick={ev => this.presentUserPopover(ev)}>
+                    <ion-button onClick={(ev) => this.presentUserPopover(ev)}>
                       {this.user.firstName} {this.user.lastName}
                     </ion-button>
                   </ion-buttons>
@@ -100,9 +100,7 @@ export class AdminDashboard {
               </ion-toolbar>
             </ion-header>,
             <ion-split-pane content-id="main">
-              {router.addEventListener("routedidchange", ev => {
-                console.log(ev);
-              })}
+              {router.addEventListener("routedidchange", (ev) => {})}
               <ion-menu content-id="main">
                 <ion-list lines="none">
                   {this.navLinks.map((link, index) => (
@@ -140,7 +138,7 @@ export class AdminDashboard {
               </ion-menu>
 
               <ion-nav id="main" />
-            </ion-split-pane>
+            </ion-split-pane>,
           ]}
         </RouterTunnel.Consumer>
       </RouterTunnel.Provider>

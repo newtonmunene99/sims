@@ -4,7 +4,7 @@ import { AuthProvider } from "../../services/auth";
 @Component({
   tag: "change-password",
   styleUrl: "change-password.scss",
-  shadow: true
+  shadow: true,
 })
 export class ChangePassword {
   @State() oldPassword: string;
@@ -21,15 +21,14 @@ export class ChangePassword {
     this.authProvider
       .updatePassword(this.oldPassword, this.newPassword)
       .then((results: any) => {
-        console.log(results);
         if (results.user.role == 1) {
           this.router.push("/admin");
         } else if (results.user.role == 2) {
           this.router.push("/dashboard");
         }
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.error(error);
       });
   }
 

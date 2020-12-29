@@ -3,7 +3,7 @@ import { DataProvider } from "../../services/data";
 
 @Component({
   tag: "admin-shops",
-  styleUrl: "admin-shops.scss"
+  styleUrl: "admin-shops.scss",
 })
 export class AdminShops {
   @State() shops: Array<any> = [];
@@ -27,7 +27,7 @@ export class AdminShops {
       .then((results: any) => {
         this.shops = results.shops;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -40,7 +40,7 @@ export class AdminShops {
         }
         this.getShops();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -80,7 +80,7 @@ export class AdminShops {
     this.assignEmployeeModal = document.createElement("ion-modal");
     this.assignEmployeeModal.component = "assign-employee";
     this.assignEmployeeModal.componentProps = {
-      shopId
+      shopId,
     };
     document.body.appendChild(this.assignEmployeeModal);
 
@@ -89,7 +89,6 @@ export class AdminShops {
     const { data } = await this.assignEmployeeModal.onDidDismiss();
 
     if (data != null) {
-      console.log(data);
     }
   }
   async showShopSalesModal(shopId: string, shopName: string) {
@@ -97,7 +96,7 @@ export class AdminShops {
     this.shopSalesModal.component = "shop-sales";
     this.shopSalesModal.componentProps = {
       shopId,
-      shopName
+      shopName,
     };
     document.body.appendChild(this.shopSalesModal);
 
@@ -109,7 +108,7 @@ export class AdminShops {
     this.shopWasteModal.component = "shop-waste";
     this.shopWasteModal.componentProps = {
       shopId,
-      shopName
+      shopName,
     };
     document.body.appendChild(this.shopWasteModal);
 
@@ -129,7 +128,7 @@ export class AdminShops {
         </ion-button>
         {this.shops.length > 0 ? (
           <div class="shops-wrapper">
-            {this.shops.map(shop => (
+            {this.shops.map((shop) => (
               <ion-card mode="ios">
                 <ion-img
                   src="../../assets/images/placeholder.png"

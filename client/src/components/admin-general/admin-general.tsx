@@ -3,7 +3,7 @@ import { DataProvider } from "../../services/data";
 
 @Component({
   tag: "admin-general",
-  styleUrl: "admin-general.scss"
+  styleUrl: "admin-general.scss",
 })
 export class AdminGeneral {
   @State() employees: Array<any> = [];
@@ -23,7 +23,7 @@ export class AdminGeneral {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
 
   dataProvider: DataProvider = new DataProvider();
@@ -40,10 +40,9 @@ export class AdminGeneral {
     this.dataProvider
       .getAllSales()
       .then((results: any) => {
-        console.log(results);
         this.sales = results.sales;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -52,10 +51,9 @@ export class AdminGeneral {
     this.dataProvider
       .getAllWaste()
       .then((results: any) => {
-        console.log(results);
         this.waste = results.waste;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -65,10 +63,9 @@ export class AdminGeneral {
     this.dataProvider
       .getUsers()
       .then((results: any) => {
-        console.log(results);
         this.employees = results.users;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -78,10 +75,9 @@ export class AdminGeneral {
     this.dataProvider
       .getProducts()
       .then((results: any) => {
-        console.log(results);
         this.products = results.results;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -91,10 +87,9 @@ export class AdminGeneral {
     this.dataProvider
       .getShops()
       .then((results: any) => {
-        console.log(results);
         this.shops = results.shops;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -104,7 +99,7 @@ export class AdminGeneral {
       (accumulator: any[], sale) => {
         const date = new Date(sale.dateAdded);
         const accumulatedSale = accumulator.find(
-          sale => sale.month == this.months[date.getMonth()]
+          (sale) => sale.month == this.months[date.getMonth()]
         );
         if (accumulatedSale) {
           accumulator[accumulator.indexOf(accumulatedSale)].total =
@@ -113,12 +108,12 @@ export class AdminGeneral {
         } else {
           accumulator.push({
             month: this.months[date.getMonth()],
-            total: sale.quantity * sale.sellingPrice
+            total: sale.quantity * sale.sellingPrice,
           });
         }
         return accumulator;
       },
-      this.months.map(month => ({ month, total: 0 }))
+      this.months?.map((month) => ({ month, total: 0 }))
     );
 
     const currentYearMonthlySales = this.sales.reduce(
@@ -127,7 +122,7 @@ export class AdminGeneral {
         const date = new Date(sale.dateAdded);
         if (date.getFullYear == today.getFullYear) {
           const accumulatedSale = accumulator.find(
-            sale => sale.month == this.months[date.getMonth()]
+            (sale) => sale.month == this.months[date.getMonth()]
           );
           if (accumulatedSale) {
             accumulator[accumulator.indexOf(accumulatedSale)].total =
@@ -136,21 +131,21 @@ export class AdminGeneral {
           } else {
             accumulator.push({
               month: this.months[date.getMonth()],
-              total: sale.quantity * sale.sellingPrice
+              total: sale.quantity * sale.sellingPrice,
             });
           }
         }
 
         return accumulator;
       },
-      this.months.map(month => ({ month, total: 0 }))
+      this.months?.map((month) => ({ month, total: 0 }))
     );
 
     const allTimeMonthlyWaste = this.waste.reduce(
       (accumulator: any[], waste) => {
         const date = new Date(waste.dateAdded);
         const accumulatedWaste = accumulator.find(
-          waste => waste.month == this.months[date.getMonth()]
+          (waste) => waste.month == this.months[date.getMonth()]
         );
         if (accumulatedWaste) {
           accumulator[accumulator.indexOf(accumulatedWaste)].total =
@@ -159,12 +154,12 @@ export class AdminGeneral {
         } else {
           accumulator.push({
             month: this.months[date.getMonth()],
-            total: waste.quantity * waste.sellingPrice
+            total: waste.quantity * waste.sellingPrice,
           });
         }
         return accumulator;
       },
-      this.months.map(month => ({ month, total: 0 }))
+      this.months?.map((month) => ({ month, total: 0 }))
     );
 
     const currentYearMonthlyWaste = this.waste.reduce(
@@ -173,7 +168,7 @@ export class AdminGeneral {
         const date = new Date(waste.dateAdded);
         if (date.getFullYear == today.getFullYear) {
           const accumulatedSale = accumulator.find(
-            waste => waste.month == this.months[date.getMonth()]
+            (waste) => waste.month == this.months[date.getMonth()]
           );
           if (accumulatedSale) {
             accumulator[accumulator.indexOf(accumulatedSale)].total =
@@ -182,14 +177,14 @@ export class AdminGeneral {
           } else {
             accumulator.push({
               month: this.months[date.getMonth()],
-              total: waste.quantity * waste.sellingPrice
+              total: waste.quantity * waste.sellingPrice,
             });
           }
         }
 
         return accumulator;
       },
-      this.months.map(month => ({ month, total: 0 }))
+      this.months?.map((month) => ({ month, total: 0 }))
     );
 
     const currentYearShopSales = this.sales.reduce(
@@ -198,7 +193,7 @@ export class AdminGeneral {
         const date = new Date(sale.dateAdded);
         if (date.getFullYear == today.getFullYear) {
           const accumulatedShop = accumulator.find(
-            shop => shop.id == sale.shopId
+            (shop) => shop.id == sale.shopId
           );
           if (accumulatedShop) {
             accumulator[accumulator.indexOf(accumulatedShop)].total =
@@ -208,20 +203,20 @@ export class AdminGeneral {
             accumulator.push({
               id: sale.shopId,
               name: sale.shop.name,
-              total: sale.quantity * sale.sellingPrice
+              total: sale.quantity * sale.sellingPrice,
             });
           }
         }
 
         return accumulator;
       },
-      this.shops.map(shop => ({ id: shop.id, name: shop.name, total: 0 }))
+      this.shops?.map((shop) => ({ id: shop.id, name: shop.name, total: 0 }))
     );
 
     const allTimeShopSales = this.sales.reduce(
       (accumulator: any[], sale) => {
         const accumulatedShop = accumulator.find(
-          shop => shop.id == sale.shopId
+          (shop) => shop.id == sale.shopId
         );
         if (accumulatedShop) {
           accumulator[accumulator.indexOf(accumulatedShop)].total =
@@ -231,13 +226,13 @@ export class AdminGeneral {
           accumulator.push({
             id: sale.shopId,
             name: sale.shop.name,
-            total: sale.quantity * sale.sellingPrice
+            total: sale.quantity * sale.sellingPrice,
           });
         }
 
         return accumulator;
       },
-      this.shops.map(shop => ({ id: shop.id, name: shop.name, total: 0 }))
+      this.shops?.map((shop) => ({ id: shop.id, name: shop.name, total: 0 }))
     );
 
     const currentYearShopWaste = this.waste.reduce(
@@ -246,7 +241,7 @@ export class AdminGeneral {
         const date = new Date(waste.dateAdded);
         if (date.getFullYear == today.getFullYear) {
           const accumulatedShop = accumulator.find(
-            shop => shop.id == waste.shopId
+            (shop) => shop.id == waste.shopId
           );
           if (accumulatedShop) {
             accumulator[accumulator.indexOf(accumulatedShop)].total =
@@ -256,20 +251,20 @@ export class AdminGeneral {
             accumulator.push({
               id: waste.shopId,
               name: waste.shop.name,
-              total: waste.quantity * waste.sellingPrice
+              total: waste.quantity * waste.sellingPrice,
             });
           }
         }
 
         return accumulator;
       },
-      this.shops.map(shop => ({ id: shop.id, name: shop.name, total: 0 }))
+      this.shops?.map((shop) => ({ id: shop.id, name: shop.name, total: 0 }))
     );
 
     const allTimeShopWaste = this.waste.reduce(
       (accumulator: any[], waste) => {
         const accumulatedShop = accumulator.find(
-          shop => shop.id == waste.shopId
+          (shop) => shop.id == waste.shopId
         );
         if (accumulatedShop) {
           accumulator[accumulator.indexOf(accumulatedShop)].total =
@@ -279,13 +274,13 @@ export class AdminGeneral {
           accumulator.push({
             id: waste.shopId,
             name: waste.shop.name,
-            total: waste.quantity * waste.sellingPrice
+            total: waste.quantity * waste.sellingPrice,
           });
         }
 
         return accumulator;
       },
-      this.shops.map(shop => ({ id: shop.id, name: shop.name, total: 0 }))
+      this.shops?.map((shop) => ({ id: shop.id, name: shop.name, total: 0 }))
     );
 
     return (
@@ -360,13 +355,15 @@ export class AdminGeneral {
                 series={[
                   {
                     name: "sales",
-                    data: currentYearMonthlySales.map(sale => sale.total)
-                  }
+                    data: currentYearMonthlySales?.map((sale) => sale.total),
+                  },
                 ]}
                 options={{
                   xaxis: {
-                    categories: currentYearMonthlySales.map(sale => sale.month)
-                  }
+                    categories: currentYearMonthlySales?.map(
+                      (sale) => sale.month
+                    ),
+                  },
                 }}
               />
             </ion-card-content>
@@ -381,13 +378,13 @@ export class AdminGeneral {
                 series={[
                   {
                     name: "sales",
-                    data: allTimeMonthlySales.map(sale => sale.total)
-                  }
+                    data: allTimeMonthlySales?.map((sale) => sale.total),
+                  },
                 ]}
                 options={{
                   xaxis: {
-                    categories: allTimeMonthlySales.map(sale => sale.month)
-                  }
+                    categories: allTimeMonthlySales?.map((sale) => sale.month),
+                  },
                 }}
               />
             </ion-card-content>
@@ -402,15 +399,15 @@ export class AdminGeneral {
                 series={[
                   {
                     name: "waste",
-                    data: currentYearMonthlyWaste.map(waste => waste.total)
-                  }
+                    data: currentYearMonthlyWaste?.map((waste) => waste.total),
+                  },
                 ]}
                 options={{
                   xaxis: {
-                    categories: currentYearMonthlyWaste.map(
-                      waste => waste.month
-                    )
-                  }
+                    categories: currentYearMonthlyWaste?.map(
+                      (waste) => waste.month
+                    ),
+                  },
                 }}
               />
             </ion-card-content>
@@ -425,13 +422,15 @@ export class AdminGeneral {
                 series={[
                   {
                     name: "waste",
-                    data: allTimeMonthlyWaste.map(waste => waste.total)
-                  }
+                    data: allTimeMonthlyWaste?.map((waste) => waste.total),
+                  },
                 ]}
                 options={{
                   xaxis: {
-                    categories: allTimeMonthlyWaste.map(waste => waste.month)
-                  }
+                    categories: allTimeMonthlyWaste?.map(
+                      (waste) => waste.month
+                    ),
+                  },
                 }}
               />
             </ion-card-content>
@@ -443,15 +442,15 @@ export class AdminGeneral {
             <ion-card-content>
               <apex-chart
                 type="donut"
-                series={currentYearShopSales.map(sale => sale.total)}
+                series={currentYearShopSales?.map((sale) => sale.total)}
                 options={{
                   dataLabels: {
-                    enabled: false
+                    enabled: false,
                   },
                   fill: {
-                    type: "gradient"
+                    type: "gradient",
                   },
-                  labels: currentYearShopSales.map(sale => sale.name)
+                  labels: currentYearShopSales?.map((sale) => sale.name),
                 }}
               />
             </ion-card-content>
@@ -463,15 +462,15 @@ export class AdminGeneral {
             <ion-card-content>
               <apex-chart
                 type="donut"
-                series={allTimeShopSales.map(sale => sale.total)}
+                series={allTimeShopSales?.map((sale) => sale.total)}
                 options={{
                   dataLabels: {
-                    enabled: false
+                    enabled: false,
                   },
                   fill: {
-                    type: "gradient"
+                    type: "gradient",
                   },
-                  labels: allTimeShopSales.map(sale => sale.name)
+                  labels: allTimeShopSales?.map((sale) => sale.name),
                 }}
               />
             </ion-card-content>
@@ -484,15 +483,15 @@ export class AdminGeneral {
             <ion-card-content>
               <apex-chart
                 type="donut"
-                series={currentYearShopWaste.map(waste => waste.total)}
+                series={currentYearShopWaste?.map((waste) => waste.total)}
                 options={{
                   dataLabels: {
-                    enabled: false
+                    enabled: false,
                   },
                   fill: {
-                    type: "gradient"
+                    type: "gradient",
                   },
-                  labels: currentYearShopWaste.map(waste => waste.name)
+                  labels: currentYearShopWaste?.map((waste) => waste.name),
                 }}
               />
             </ion-card-content>
@@ -504,15 +503,15 @@ export class AdminGeneral {
             <ion-card-content>
               <apex-chart
                 type="donut"
-                series={allTimeShopWaste.map(waste => waste.total)}
+                series={allTimeShopWaste?.map((waste) => waste.total)}
                 options={{
                   dataLabels: {
-                    enabled: false
+                    enabled: false,
                   },
                   fill: {
-                    type: "gradient"
+                    type: "gradient",
                   },
-                  labels: allTimeShopWaste.map(waste => waste.name)
+                  labels: allTimeShopWaste?.map((waste) => waste.name),
                 }}
               />
             </ion-card-content>

@@ -3,7 +3,7 @@ import { DataProvider } from "../../services/data";
 
 @Component({
   tag: "admin-employees",
-  styleUrl: "admin-employees.scss"
+  styleUrl: "admin-employees.scss",
 })
 export class AdminEmployees {
   @State() employees: Array<any> = [];
@@ -24,7 +24,7 @@ export class AdminEmployees {
       .then((results: any) => {
         this.employees = results.users;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -39,7 +39,6 @@ export class AdminEmployees {
     this.addEmployeeModal.present();
 
     const { data } = await this.addEmployeeModal.onDidDismiss();
-    console.log(data);
   }
 
   async showEditEmployeeModal(employee) {
@@ -79,7 +78,7 @@ export class AdminEmployees {
               <ion-col size="1">Active</ion-col>
               <ion-col size="1"></ion-col>
             </ion-row>
-            {this.employees.map(employee => (
+            {this.employees.map((employee) => (
               <ion-row>
                 <ion-col>{`${employee.firstName} ${employee.lastName}`}</ion-col>
                 <ion-col>{employee.email}</ion-col>

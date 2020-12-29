@@ -4,7 +4,7 @@ import { AuthProvider } from "../../services/auth";
 @Component({
   tag: "add-employee",
   styleUrl: "add-employee.scss",
-  shadow: true
+  shadow: true,
 })
 export class AddEmployee {
   @State() firstName: string;
@@ -22,11 +22,11 @@ export class AddEmployee {
   handleRegister() {
     this.authProvider
       .register(this.email, this.firstName, this.lastName, this.role)
-      .then(results => {
+      .then((results) => {
         this.addEmployeeModal.dismiss(results);
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.error(error);
       });
   }
 
@@ -96,7 +96,6 @@ export class AddEmployee {
               value={2}
               onIonChange={(ev: any) => {
                 this.role = ev.target.value;
-                console.log(ev.target.value);
               }}
             >
               <ion-list-header>
@@ -129,7 +128,7 @@ export class AddEmployee {
             </ion-button>
           </ion-list>
         </div>
-      </ion-content>
+      </ion-content>,
     ];
   }
 }

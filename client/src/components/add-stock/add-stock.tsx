@@ -4,7 +4,7 @@ import { DataProvider } from "../../services/data";
 @Component({
   tag: "add-stock",
   styleUrl: "add-stock.scss",
-  shadow: true
+  shadow: true,
 })
 export class AddStock {
   @State() productId: number;
@@ -22,12 +22,13 @@ export class AddStock {
       .getProducts()
       .then((results: any) => {
         this.products = results.results;
+
         if (results.results.length > 0) {
           this.productId = results.results[0].id;
           this.product = results.results[0];
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -39,10 +40,10 @@ export class AddStock {
   handleAddStock() {
     this.dataProvider
       .addStock(this.productId, this.quantity, this.shopId)
-      .then(results => {
+      .then((results) => {
         this.addStockModal.dismiss(results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -74,18 +75,18 @@ export class AddStock {
                 onChange={(ev: any) => {
                   this.productId = ev.target.value;
                   this.product = this.products.find(
-                    product => product.id == ev.target.value
+                    (product) => product.id == ev.target.value
                   );
                 }}
               >
-                {this.products.map(product => (
+                {this.products.map((product) => (
                   <option value={product.id}>{product.name}</option>
                 ))}
               </select>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">
-                Quantity in {this.product.uom}
+                Quantity in {this.product?.uom ?? ""}
               </ion-label>
               <ion-input
                 type="number"
@@ -113,7 +114,7 @@ export class AddStock {
             </ion-button>
           </ion-list>
         </div>
-      </ion-content>
+      </ion-content>,
     ];
   }
 }

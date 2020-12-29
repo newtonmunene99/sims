@@ -4,7 +4,7 @@ import { DataProvider } from "../../services/data";
 @Component({
   tag: "edit-employee",
   styleUrl: "edit-employee.scss",
-  shadow: true
+  shadow: true,
 })
 export class EditEmployee {
   @State() firstName: string;
@@ -39,11 +39,11 @@ export class EditEmployee {
         this.active,
         this.employee.id
       )
-      .then(results => {
+      .then((results) => {
         this.editEmployeeModal.dismiss(results);
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.error(error);
       });
   }
 
@@ -153,7 +153,7 @@ export class EditEmployee {
             </ion-button>
           </ion-list>
         </div>
-      </ion-content>
+      </ion-content>,
     ];
   }
 }

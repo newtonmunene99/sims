@@ -3,7 +3,7 @@ import { DataProvider } from "../../services/data";
 
 @Component({
   tag: "shop-sales",
-  styleUrl: "shop-sales.scss"
+  styleUrl: "shop-sales.scss",
 })
 export class ShopSales {
   shopSalesModal: HTMLIonModalElement;
@@ -23,10 +23,9 @@ export class ShopSales {
     this.dataProvider
       .getShopSales(this.shopId)
       .then((results: any) => {
-        console.log(results);
         this.sales = results.sales;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -55,8 +54,8 @@ export class ShopSales {
             <ion-col>Date</ion-col>
             <ion-col>Employee</ion-col>
           </ion-row>
-          {this.sales.map(sale => {
-            var date = new Date(sale.dateAdded);
+          {this.sales.map((sale) => {
+            const date = new Date(sale.dateAdded);
             return (
               <ion-row>
                 <ion-col>{sale.product.name}</ion-col>
@@ -74,7 +73,7 @@ export class ShopSales {
             );
           })}
         </ion-grid>
-      </ion-content>
+      </ion-content>,
     ];
   }
 }

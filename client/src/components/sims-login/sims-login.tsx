@@ -4,7 +4,7 @@ import { AuthProvider } from "../../services/auth";
 @Component({
   tag: "sims-login",
   styleUrl: "sims-login.scss",
-  shadow: true
+  shadow: true,
 })
 export class SimsLogin {
   @State() email: string;
@@ -21,15 +21,14 @@ export class SimsLogin {
     this.authProvider
       .login(this.email, this.password)
       .then((results: any) => {
-        console.log(results);
         if (results.user.role == 1) {
           this.router.push("/admin");
         } else if (results.user.role == 2) {
           this.router.push("/dashboard");
         }
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.error(error);
       });
   }
 

@@ -4,7 +4,7 @@ import { DataProvider } from "../../services/data";
 @Component({
   tag: "assign-employee",
   styleUrl: "assign-employee.scss",
-  shadow: true
+  shadow: true,
 })
 export class AssignEmployee {
   assignEmployeeModal: HTMLIonModalElement;
@@ -27,27 +27,29 @@ export class AssignEmployee {
           .getShopEmployees(this.shopId)
           .then((res: any) => {
             for (const user of results.users) {
-              if (res.employees.find(employee => employee.userId == user.id)) {
+              if (
+                res.employees.find((employee) => employee.userId == user.id)
+              ) {
                 formattedUsers.push({
                   ...user,
-                  alreadyAdded: true
+                  alreadyAdded: true,
                 });
               } else {
                 formattedUsers.push({
                   ...user,
-                  alreadyAdded: false
+                  alreadyAdded: false,
                 });
               }
             }
-            console.log(formattedUsers);
+
             this.users = formattedUsers;
           })
-          .catch(error => {
-            console.log(error);
+          .catch((error) => {
+            console.error(error);
           });
       })
-      .catch(error => {
-        console.log(error);
+      .catch((error) => {
+        console.error(error);
       });
   }
 
@@ -58,7 +60,7 @@ export class AssignEmployee {
         this.presentToast("Employee assigned successfully");
         this.getUsers();
       })
-      .catch(error => {
+      .catch((error) => {
         this.presentToast(
           "There was a problem assigning this employee. Please try again"
         );
@@ -73,7 +75,7 @@ export class AssignEmployee {
         this.presentToast("Employee unassigned successfully");
         this.getUsers();
       })
-      .catch(error => {
+      .catch((error) => {
         this.presentToast(
           "There was a problem assigning this employee. Please try again"
         );
@@ -115,7 +117,7 @@ export class AssignEmployee {
             </ion-label>
           </ion-list-header>
 
-          {this.users.map(user => {
+          {this.users.map((user) => {
             return (
               <ion-item>
                 <ion-label>{`${user.firstName} ${user.lastName}`}</ion-label>
@@ -157,7 +159,7 @@ export class AssignEmployee {
             );
           })}
         </ion-list>
-      </ion-content>
+      </ion-content>,
     ];
   }
 }

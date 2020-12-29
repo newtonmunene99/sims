@@ -3,7 +3,7 @@ import { AuthProvider } from "../../services/auth";
 
 @Component({
   tag: "admin-login",
-  styleUrl: "admin-login.scss"
+  styleUrl: "admin-login.scss",
 })
 export class AdminLogin {
   @State() email: string;
@@ -13,11 +13,9 @@ export class AdminLogin {
   handleLogin() {
     this.authProvider
       .login(this.email, this.password)
-      .then(results => {
-        console.log(results);
-      })
-      .catch(error => {
-        console.log(error);
+      .then((results) => {})
+      .catch((error) => {
+        console.error(error);
       });
   }
 

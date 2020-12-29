@@ -4,7 +4,7 @@ import { DataProvider } from "../../services/data";
 @Component({
   tag: "sims-shops",
   styleUrl: "sims-shops.scss",
-  shadow: true
+  shadow: true,
 })
 export class SimsShops {
   shopSalesModal: HTMLIonModalElement;
@@ -19,7 +19,7 @@ export class SimsShops {
       .then((results: any) => {
         this.shops = results.shops;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }
@@ -29,7 +29,7 @@ export class SimsShops {
     this.shopSalesModal.component = "shop-sales";
     this.shopSalesModal.componentProps = {
       shopId,
-      shopName
+      shopName,
     };
     document.body.appendChild(this.shopSalesModal);
 
@@ -41,7 +41,7 @@ export class SimsShops {
     this.shopWasteModal.component = "shop-waste";
     this.shopWasteModal.componentProps = {
       shopId,
-      shopName
+      shopName,
     };
     document.body.appendChild(this.shopWasteModal);
 
@@ -52,7 +52,7 @@ export class SimsShops {
       <ion-content>
         {this.shops.length > 0 ? (
           <div class="shops-wrapper">
-            {this.shops.map(shop => (
+            {this.shops.map((shop) => (
               <ion-card mode="ios">
                 <ion-img
                   src="../../assets/images/placeholder.png"
